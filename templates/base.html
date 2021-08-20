@@ -12,17 +12,17 @@
 <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="">
+            <a class="navbar-item" href="{% url 'index' %}">
                 <p>App Name</p>
             </a>
         </div>
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <a class="button is-dark">
+                    <a class="button is-dark" href="/accounts/register">
                         <strong>Sign up</strong>
                     </a>
-                    <a class="button is-light">
+                    <a class="button is-light" href="/accounts/login">
                         Log in
                     </a>
                 </div>
