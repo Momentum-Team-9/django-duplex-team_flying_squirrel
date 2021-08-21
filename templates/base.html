@@ -19,12 +19,19 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
+                    {% if request.user.pk != none %}
+                    <a class="button is-light" href="/accounts/logout">
+                        Log out
+                    </a>
+                    {% endif %}
+                    {% if request.user.pk == none %}
                     <a class="button is-dark" href="/accounts/register">
                         <strong>Sign up</strong>
                     </a>
                     <a class="button is-light" href="/accounts/login">
                         Log in
                     </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
