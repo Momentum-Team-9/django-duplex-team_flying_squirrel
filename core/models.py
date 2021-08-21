@@ -28,6 +28,7 @@ class Snippet(models.Model):
     language = models.CharField(max_length=30)
     created_at = DateTimeField(auto_now_add=True)
     copied = models.IntegerField(default=0)
+    public = models.BooleanField(default=True)
 
     def __str__(self):
         return f'{self.title}'
