@@ -21,4 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
     path('', views.index, name='index'),
+    path('user/<int:pk>/profile', views.user_profile, name='user_profile'),
+    path('feed/', views.feed, name='feed'),
 ]
