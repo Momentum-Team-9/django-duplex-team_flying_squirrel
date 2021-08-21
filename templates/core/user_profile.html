@@ -2,4 +2,22 @@
 
 {% block content %}
 <h1>User Profile</h1>
+
+
+{% if user.is_authenticated %}
+  <header class="header">
+    <h2>  
+      <a href="/feed">Feed |</a>  
+      
+    </h2>
+  </header>
+{% endif %}
+<div class="profile-pic">
+    <img src="{{ profile.profile_image.url }}" alt="Profile pic" width="200">
+    <br>
+    <br>
+    {% if request.user.pk == user.pk %}
+        Edit Picture
+    {% endif %}
+</div>
 {% endblock %}
