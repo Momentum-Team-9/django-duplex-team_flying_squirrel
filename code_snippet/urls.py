@@ -27,6 +27,6 @@ urlpatterns = [
     path('feed/', views.feed, name='feed'),
     path('', views.index, name='index'),
     path('snippet/<int:pk>', views.snippet, name='snippet'),
-    path('snippet/add', views.add_snippet, name='add_snippet')
+    path('user/<int:pk>/profile/snippet/add', views.add_snippet, name='add_snippet')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

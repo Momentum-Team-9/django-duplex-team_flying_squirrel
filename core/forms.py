@@ -24,9 +24,3 @@ class SnippetForm(forms.ModelForm):
             'language',
             'public',
         ]
-        
-
-    def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user', '')
-        super(SnippetForm, self).__init__(*args, **kwargs)
-        self.fields['created_by']=forms.ModelChoiceField(queryset=User.objects.filter(username=user))

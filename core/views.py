@@ -39,13 +39,15 @@ def snippet(request, pk):
 
 
 @login_required
-def add_snippet(request):
+def add_snippet(request, pk):
     if request.method == 'GET':
         form = SnippetForm()
     else: 
         form = SnippetForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            snippet = form.save(commit=False)
+            snippet.created_by = request.user
+            snippet.save()
             return redirect(to='feed')
 
     return render(
