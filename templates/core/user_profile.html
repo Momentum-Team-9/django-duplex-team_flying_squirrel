@@ -12,15 +12,17 @@
     <h1>{{user.username|title}}'s Profile</h1>
   </header>
 {% endif %}
-
-<div class="profile-pic">
-    <img src="{{ profile.profile_image.url }}" alt="Profile pic" width="200">
-    <br>
-    {% if request.user.pk == user.pk %}
-        Edit Picture
-    {% endif %}
-</div>
+<div class="profile">
+  {{ profile.bio }}
+  <div class="profile-pic">
+      <img src="{{ profile.profile_image.url }}" alt="Profile pic" width="200">
+      <br>
+      {% if request.user.pk == user.pk %}
+      <a href="{% url 'edit_profile' pk=user.pk %}">Edit Profile</a>
+      {% endif %}
+  </div>
 </br></br>
+</div>
 <div class="snippets-box">
   <div>
     <h3><a href="{% url 'add_snippet' pk=user.pk %}">Add New Snippet</a></h3>

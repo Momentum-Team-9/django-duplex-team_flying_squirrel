@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
     path('user/<int:pk>/profile', views.user_profile, name='user_profile'),
+    path('user/<int:pk>/profile/edit', views.edit_profile, name='edit_profile'),
     path('feed/', views.feed, name='feed'),
     path('', views.index, name='index'),
     path('snippet/<int:pk>', views.snippet, name='snippet'),
