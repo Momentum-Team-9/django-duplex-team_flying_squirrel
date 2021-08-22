@@ -13,3 +13,14 @@ class ProfileForm(forms.ModelForm):
         fields = ['profile_image', 'bio']
 
     
+
+class SnippetForm(forms.ModelForm):
+
+    class Meta:
+        model = Snippet
+        fields = [
+            'title',
+            'code',
+            'language',
+            'public',
+        ]
