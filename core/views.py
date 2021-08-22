@@ -6,8 +6,9 @@ from .models import User, Profile, Snippet
 # Create your views here.
 def index(request):
     users = User.objects.all()
+    
     if request.user.is_authenticated:
-        return redirect(to='feed')
+        return redirect('feed')
     return render(request, 'core/index.html', {'users': users})
 
 
@@ -23,5 +24,4 @@ def user_profile(request, pk):
 def feed(request):
     users = User.objects.all()
     
-
     return render(request, 'core/feed.html', {'users':users})
