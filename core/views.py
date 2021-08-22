@@ -37,7 +37,6 @@ def snippet(request, pk):
     return
 
 
-
 @login_required
 def add_snippet(request, pk):
     if request.method == 'GET':

@@ -3,7 +3,11 @@
 {% block content %}
 <h1>Flying Squirrel Feed</h1>
 
+<div>
+    <h3><a href="{% url 'add_snippet' pk=user.pk %}">Add New Snippet</a></h3>
 </div>
+
+<div>
     {% for snippet in snippets %}
     <div class="card">
         <div class="card-content">
@@ -20,13 +24,16 @@
                 <a href="#">Copy Snippet</a>
             </span>
             </p>
-            <p class="card-footer-item">
-            <span>
-                <a href="#">Edit Snippet</a>
-            </span>
-            </p>
+            {% if request.user.pk == user.pk %}
+                <p class="card-footer-item">
+                    <span>
+                        <a href="#">Edit Snippet</a>
+                    </span>
+                </p>
+            {% endif %}
+            
         </footer>
     </div>
     {% endfor %}
-<div>
+</div>
 {% endblock %}
