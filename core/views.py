@@ -54,3 +54,21 @@ def add_snippet(request, pk):
         'core/add_snippet.html',
         {'form': form}
     )
+
+
+@login_required
+def edit_snippet(request, pk):
+    snippet = get_object_or_404(Snippet, pk=pk)
+    if request.method == 'GET':
+        form = SnippetForm(instance=snippet)
+    else:
+        form = SnippetForm(data=request.POST, instance=snippet)
+        if form.is_valid():
+            form.save()
+            return redirect(to='feed')
+
+    return render(
+        request,
+        'core/edit_snippet.html',
+        {'form': form, 'snippet': snippet}
+    )

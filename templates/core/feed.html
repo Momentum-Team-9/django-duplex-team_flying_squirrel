@@ -15,7 +15,10 @@
                 {{ snippet.title }}
             </p>
             <p class="subtitle">
-            {{ snippet.code }}
+                {{ snippet.code }}
+            </p>
+            <p>
+                {{ snippet.language }}
             </p>
         </div>
         <footer class="card-footer">
@@ -27,7 +30,7 @@
             {% if request.user.pk == user.pk %}
                 <p class="card-footer-item">
                     <span>
-                        <a href="#">Edit Snippet</a>
+                        <a href="{% url 'edit_snippet' pk=user.pk %}">Edit Snippet</a>
                     </span>
                 </p>
             {% endif %}
