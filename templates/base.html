@@ -13,7 +13,7 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="{% url 'index' %}">
-                <p>App Name</p>
+                <p>Code Keeper</p>
             </a>
         </div>
         <div class="navbar-end">
@@ -23,8 +23,7 @@
                     <a class="button is-light" href="/accounts/logout">
                         Log out
                     </a>
-                    <a class="button is-light" href="">
-                    {{user.username|title}}
+                    <a class="button is-light" href="{% url 'user_profile' pk=request.user.pk %}">{{user.username|title}}
                     </a>
                     {% endif %}
                     {% if request.user.pk == none %}
