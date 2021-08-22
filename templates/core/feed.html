@@ -2,4 +2,31 @@
 
 {% block content %}
 <h1>Flying Squirrel Feed</h1>
+
+</div>
+    {% for snippet in snippets %}
+    <div class="card">
+        <div class="card-content">
+            <p class="title">
+                {{ snippet.title }}
+            </p>
+            <p class="subtitle">
+            {{ snippet.code }}
+            </p>
+        </div>
+        <footer class="card-footer">
+            <p class="card-footer-item">
+            <span>
+                <a href="#">Copy Snippet</a>
+            </span>
+            </p>
+            <p class="card-footer-item">
+            <span>
+                <a href="#">Edit Snippet</a>
+            </span>
+            </p>
+        </footer>
+    </div>
+    {% endfor %}
+<div>
 {% endblock %}
