@@ -35,7 +35,7 @@ class Profile(models.Model):
 
 class Snippet(models.Model):
     title = models.CharField(max_length=100)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='snippet')
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='snippets')
     code = models.TextField()
     language = models.CharField(max_length=30)
     created_at = DateTimeField(auto_now_add=True)

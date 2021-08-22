@@ -20,4 +20,36 @@
         Edit Picture
     {% endif %}
 </div>
+<div class="snippets-box">
+
+  {% for snippet in user.snippets.all %}
+  <div class="card">
+      <div class="card-content">
+          <p class="title">
+              {{ snippet.title }}
+          </p>
+          <p class="subtitle">
+          {{ snippet.code }}
+          </p>
+      </div>
+      <footer class="card-footer">
+          <p class="card-footer-item">
+          <span>
+              <a href="#">Copy Snippet</a>
+          </span>
+          </p>
+          {% if request.user.pk == user.pk %}
+              <p class="card-footer-item">
+                  <span>
+                      <a href="#">Edit Snippet</a>
+                  </span>
+              </p>
+          {% endif %}
+          
+      </footer>
+  </div>
+  {% endfor %}
+
+</div>
+
 {% endblock %}
