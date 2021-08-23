@@ -37,7 +37,7 @@
                     <a href="#">Copy Snippet</a>
                 </span>
                 </p>
-                {% if request.user.pk == user.pk %}
+                {% if request.user.pk == snippet.created_by.pk %}
                     <p class="card-footer-item">
                         <span>
                             <a href="#">Edit Snippet</a>
