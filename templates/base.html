@@ -21,9 +21,7 @@
                 <div class="buttons">
                     {% if request.user.pk != none %}
                     <a class="button is-light" href="/accounts/logout">
-                        Log out
-                    </a>
-                    <a class="button is-light" href="{% url 'user_profile' pk=request.user.pk %}">{{user.username|title}}
+                        Log out {{user.username|title}}
                     </a>
                     {% endif %}
                     {% if request.user.pk == none %}
