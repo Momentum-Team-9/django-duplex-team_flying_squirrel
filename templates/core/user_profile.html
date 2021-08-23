@@ -1,35 +1,48 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>User Profile</h1>
-
 
 {% if user.is_authenticated %}
   <header class="header">
     <h2>  
       <a href="/feed">Feed |</a>  
+      <a href="{% url 'user_profile' pk=request.user.pk %}">Profile</a>
       
     </h2>
+    <h1>{{user.username|title}}'s Profile</h1>
   </header>
 {% endif %}
-<div class="profile-pic">
-    <img src="{{ profile.profile_image.url }}" alt="Profile pic" width="200">
-    <br>
-    <br>
-    {% if request.user.pk == user.pk %}
-        Edit Picture
-    {% endif %}
+<div class="profile">
+  {{ profile.bio }}
+  <div class="profile-pic">
+      <img src="{{ profile.profile_image.url }}" alt="Profile pic" width="200">
+      <br>
+      {% if request.user.pk == user.pk %}
+      <a href="{% url 'edit_profile' pk=user.pk %}">Edit Profile</a>
+      {% endif %}
+  </div>
+</br></br>
 </div>
 <div class="snippets-box">
-
+  <div>
+    <h3><a href="{% url 'add_snippet' pk=user.pk %}">Add New Snippet</a></h3>
+  </div>
   {% for snippet in user.snippets.all %}
   <div class="card">
       <div class="card-content">
+        <div class="card-content">
+          <p class="created_by">
+              {{snippet.created_by}}
+          </p>
+
           <p class="title">
               {{ snippet.title }}
           </p>
           <p class="subtitle">
           {{ snippet.code }}
+          </p>
+          <p class="language">
+              {{snippet.language}}
           </p>
       </div>
       <footer class="card-footer">

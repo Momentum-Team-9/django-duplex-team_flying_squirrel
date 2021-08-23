@@ -1,39 +1,53 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Flying Squirrel Feed</h1>
-
-<div>
-    <h3><a href="{% url 'add_snippet' pk=user.pk %}">Add New Snippet</a></h3>
-</div>
-
-<div>
-    {% for snippet in snippets %}
-    <div class="card">
-        <div class="card-content">
-            <p class="title">
-                {{ snippet.title }}
-            </p>
-            <p class="subtitle">
-            {{ snippet.code }}
-            </p>
-        </div>
-        <footer class="card-footer">
-            <p class="card-footer-item">
-            <span>
-                <a href="#">Copy Snippet</a>
-            </span>
-            </p>
-            {% if request.user.pk == user.pk %}
-                <p class="card-footer-item">
-                    <span>
-                        <a href="#">Edit Snippet</a>
-                    </span>
-                </p>
-            {% endif %}
-            
-        </footer>
+<header class="header">
+    <h2>  
+        <a href="/feed">Feed |</a>  
+        <a href="{% url 'user_profile' pk=request.user.pk %}">{{user.username|title}}'s Profile</a>
+    </h2>
+    <h1>Public Snippet Feed</h1>
+</header>
+</br></br>
+<div class="snippets-box">
+    <div>
+        <h3><a href="{% url 'add_snippet' pk=user.pk %}">Add New Snippet</a></h3>
     </div>
-    {% endfor %}
+    <div>
+        {% for snippet in snippets reversed %}
+        <div class="card">
+            <div class="card-content">
+                <p class="created_by">
+                    {{snippet.created_by}}
+                </p>
+
+                <p class="title">
+                    {{ snippet.title }}
+                </p>
+                <p class="subtitle">
+                {{ snippet.code }}
+                </p>
+                <p class="language">
+                    {{snippet.language}}
+                </p>
+            </div>
+            <footer class="card-footer">
+                <p class="card-footer-item">
+                <span>
+                    <a href="#">Copy Snippet</a>
+                </span>
+                </p>
+                {% if request.user.pk == snippet.created_by.pk %}
+                    <p class="card-footer-item">
+                        <span>
+                            <a href="#">Edit Snippet</a>
+                        </span>
+                    </p>
+                {% endif %}
+                
+            </footer>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
