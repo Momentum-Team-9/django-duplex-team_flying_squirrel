@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
 from .models import User, Profile, Snippet
 from .forms import SnippetForm, ProfileForm
 from django.db.models import Q
@@ -96,9 +97,9 @@ def edit_snippet(request, pk):
         {'form': form, 'snippet': snippet}
     )
 
-    
-def search(request):
-    query = request.GET.get("query")
-    search_results = Snippet.objects.filter(Q(title__icontains=query) | Q(code__icontains=query) | Q(language__icontains=query) | Q(created_by__icontains=query))
 
-    return render(request, "index.html", {"search_results":search_results})
+def snippet_search(request):
+    query = request.GET.get("query")
+    search_results = Snippet.objects.filter(Q(title__icontains=query) | Q(code__icontains=query) | Q(language__icontains=query))
+
+    return render(request, "core/feed.html", {"snippets":search_results})

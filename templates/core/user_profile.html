@@ -4,16 +4,11 @@
 
 {% if user.is_authenticated %}
   <header class="header">
-    <h2>  
-      <a href="/feed">Feed |</a>  
-      <a href="{% url 'user_profile' pk=request.user.pk %}">Profile</a>
-      
-    </h2>
     <h1>{{user.username|title}}'s Profile</h1>
   </header>
 {% endif %}
 <div class="profile">
-  {{ profile.bio }}
+  Bio: {{ profile.bio }}
   <div class="profile-pic">
       <img src="{{ profile.profile_image.url }}" alt="Profile pic" width="200">
       <br>
@@ -27,7 +22,7 @@
   <div>
     <h3><a href="{% url 'add_snippet' pk=user.pk %}">Add New Snippet</a></h3>
   </div>
-  {% for snippet in user.snippets.all %}
+  {% for snippet in user.snippets.all reversed%}
   <div class="card">
       <div class="card-content">
         <div class="card-content">
