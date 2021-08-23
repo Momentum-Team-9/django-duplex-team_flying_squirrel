@@ -18,6 +18,10 @@
   </div>
 </br></br>
 </div>
+<form action={% url "snippet_search" %} method="GET">
+  <input type="text" name="query" />
+  <button type="submit">Search snippets</button>
+</form>
 <div class="snippets-box">
   <div>
     <h3><a href="{% url 'add_snippet' pk=user.pk %}">Add New Snippet</a></h3>

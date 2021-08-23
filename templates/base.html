@@ -17,6 +17,17 @@
                 <p>Code Keeper</p>
             </a>
         </div>
+        {% if request.user.pk != none %}
+        <div class="navbar-start">
+            <div class="navbar-item">
+                <a href="/feed">Feed</a>
+            </div>
+            <div class="navbar-item">
+                <a href="{% url 'user_profile' pk=request.user.pk %}">Profile</a>
+            </div>
+            
+        </div>
+        {% endif %}
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
@@ -38,13 +49,6 @@
         </div>
     </nav>
     <div class="content">
-        {% if request.user.pk != none %}
-        <h2>
-        <a href="/feed">Feed |</a>  
-        <a href="{% url 'user_profile' pk=request.user.pk %}">Profile</a>
-        </h2>
-    </br>
-        {% endif %}
         {% block content %}
         {% endblock %}
     </div>
