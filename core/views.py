@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import User, Profile, Snippet
 from .forms import SnippetForm, ProfileForm
+from django.db.models import Q
 
 
 # Create your views here.
@@ -94,3 +95,10 @@ def edit_snippet(request, pk):
         'core/edit_snippet.html',
         {'form': form, 'snippet': snippet}
     )
+
+    
+def search(request):
+    query = request.GET.get("query")
+    search_results = Snippet.objects.filter(Q(title__icontains=query) | Q(code__icontains=query) | Q(language__icontains=query) | Q(created_by__icontains=query))
+
+    return render(request, "index.html", {"search_results":search_results})
