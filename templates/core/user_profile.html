@@ -54,7 +54,7 @@
           {% if request.user.pk == user.pk %}
               <p class="card-footer-item">
                   <span>
-                      <a href="#">Edit Snippet</a>
+                      <a href="{% url 'edit_snippet' pk=snippet.pk %}">Edit Snippet</a>
                   </span>
               </p>
           {% endif %}

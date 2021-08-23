@@ -40,7 +40,7 @@
                 {% if request.user.pk == snippet.created_by.pk %}
                     <p class="card-footer-item">
                         <span>
-                            <a href="#">Edit Snippet</a>
+                            <a href="{% url 'edit_snippet' pk=snippet.pk %}">Edit Snippet</a>
                         </span>
                     </p>
                 {% endif %}
