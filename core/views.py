@@ -41,6 +41,7 @@ def edit_profile(request, pk):
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
+            profile.profile_image = request.FILES["profile_image"]
             profile.save()
             return redirect('feed')
 

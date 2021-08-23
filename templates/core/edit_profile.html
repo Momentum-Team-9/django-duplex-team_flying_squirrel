@@ -4,7 +4,7 @@
 <h1> Edit Profile </h1>
 
 <div class="form">
-    <form method="POST" class="form-element">
+    <form method="POST"  class="form-element" enctype= "multipart/form-data">
         {% csrf_token %}
         {% for field in form %}
         <div class="">
@@ -15,6 +15,5 @@
             <button class="button is-success" type="submit">Update Profile</button>
         </div>
     </form>
-
 
 {% endblock %}
