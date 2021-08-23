@@ -18,7 +18,7 @@ class User(AbstractUser):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', primary_key=True)
     profile_image = models.ImageField(upload_to='media', default='media/default_image.jpg')
-    bio = models.TextField(max_length=400, null=True, blank=True)
+    bio = models.TextField(max_length=400, null=True, blank=True, default='This user has not entered a bio')
     
     @receiver(post_save, sender=User) 
     def create_user_profile(sender, instance, created, **kwargs):
@@ -29,9 +29,9 @@ class Profile(models.Model):
     def save_user_profile(sender, instance, **kwargs):
 	    instance.profile.save()
 
-
     def __str__(self):
         return f"{self.user}"
+
 
 class Snippet(models.Model):
     title = models.CharField(max_length=100)

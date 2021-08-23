@@ -10,9 +10,8 @@ class ProfileForm(forms.ModelForm):
         self.fields['user'].widget = forms.HiddenInput()
     class Meta:
         model = Profile
-        fields = ['profile_image', 'bio']
+        fields = ['user', 'profile_image', 'bio']
 
-    
 
 class SnippetForm(forms.ModelForm):
 
