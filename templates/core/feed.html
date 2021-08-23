@@ -1,14 +1,21 @@
 {% extends "base.html" %}
-
+{% load static %}
+{% block javascript %}
+<script src ={% static 'core/js/scripts.js' %} defer></script>
+{% endblock javascript%}
 {% block content %}
+
 <header class="header">
-    <h2>  
-        <a href="/feed">Feed |</a>  
-        <a href="{% url 'user_profile' pk=request.user.pk %}">{{user.username|title}}'s Profile</a>
-    </h2>
     <h1>Public Snippet Feed</h1>
 </header>
-</br></br>
+</br>
+</br>
+<form action={% url "snippet_search" %} method="GET">
+    <input type="text" name="query" />
+    <button type="submit">Search snippets</button>
+  </form>
+</br>
+</br>
 <div class="snippets-box">
     <div>
         <h3><a href="{% url 'add_snippet' pk=user.pk %}">Add New Snippet</a></h3>
