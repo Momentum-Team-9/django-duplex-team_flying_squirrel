@@ -25,7 +25,7 @@
         <div class="card">
             <div class="card-content">
                 <p class="created_by">
-                    {{snippet.created_by}}
+                    <a href="{% url 'user_profile' pk=snippet.created_by.pk %}">{{snippet.created_by}}</a>
                 </p>
 
                 <p class="title">

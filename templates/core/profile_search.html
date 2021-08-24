@@ -20,7 +20,10 @@
 </div>
 <form action="{% url 'profile_search' pk=user.pk %}" method="GET">
   <input type="text" name="query" />
-  <button type="submit">Search snippets</button>
+  <button class="button" type="submit">Search snippets</button>
+  <div class="button">
+    <a href="{% url 'user_profile' pk=user.profile.pk %}">New Search</a>
+  </div>
 </form>
 <div class="snippets-box">
   <div>
