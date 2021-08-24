@@ -109,22 +109,14 @@ def profile_search(request, pk):
     user = get_object_or_404(User, pk=pk)
     profile = get_object_or_404(Profile, user=user)
 
-    if Snippet.created_by.pk == request.user.pk:
-        query = request.GET.get("query")
-        filtered_results = Snippet.created_by.filter(request.user)
-        search_results = filtered_results.filter(title__icontains=query)
-        
 
-        return render(
-            request,
-            'core/user_profile.html',
-            {"snippets": search_results}
-        )
+    query = request.GET.get("query")
+    filtered_results = Snippet.objects.filter(created_by_id=request.user.pk)
+    search_results = filtered_results.filter(title__icontains=query)
 
-    else:
-        return render(
-            request,
-            'core/user_profile.html',
-            {"user": user, "profile": profile}
-        )
+    return render(
+        request,
+        'core/profile_search.html',
+        {'profile': profile, "snippets": search_results}
+    )
 
