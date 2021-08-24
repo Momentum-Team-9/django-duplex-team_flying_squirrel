@@ -107,9 +107,9 @@ def snippet_search(request):
 @login_required
 def profile_search(request, pk):
     user = get_object_or_404(User, pk=pk)
-    snippets = get_object_or_404(Snippet, user=user)
     profile = get_object_or_404(Profile, user=user)
-    if snippet.created_by.pk == request.user.pk:
+
+    if Snippet.created_by.pk == request.user.pk:
         query = request.GET.get("query")
         filtered_results = Snippet.created_by.filter(request.user)
         search_results = filtered_results.filter(title__icontains=query)
@@ -118,13 +118,13 @@ def profile_search(request, pk):
         return render(
             request,
             'core/user_profile.html',
-            {"user": user, "snippets": search_results}
+            {"snippets": search_results}
         )
 
     else:
         return render(
             request,
             'core/user_profile.html',
-            {"user": user, "snippets": snippets, "profile": profile}
+            {"user": user, "profile": profile}
         )
 
