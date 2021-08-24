@@ -97,9 +97,34 @@ def edit_snippet(request, pk):
         {'form': form, 'snippet': snippet}
     )
 
-
+@login_required
 def snippet_search(request):
     query = request.GET.get("query")
     search_results = Snippet.objects.filter(Q(title__icontains=query) | Q(code__icontains=query) | Q(language__icontains=query))
 
-    return render(request, "core/feed.html", {"snippets":search_results})
+    return render(request, "core/feed.html", {"snippets": search_results})
+
+@login_required
+def profile_search(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    snippets = get_object_or_404(Snippet, user=user)
+    profile = get_object_or_404(Profile, user=user)
+    if snippet.created_by.pk == request.user.pk:
+        query = request.GET.get("query")
+        filtered_results = Snippet.created_by.filter(request.user)
+        search_results = filtered_results.filter(title__icontains=query)
+        
+
+        return render(
+            request,
+            'core/user_profile.html',
+            {"user": user, "snippets": search_results}
+        )
+
+    else:
+        return render(
+            request,
+            'core/user_profile.html',
+            {"user": user, "snippets": snippets, "profile": profile}
+        )
+

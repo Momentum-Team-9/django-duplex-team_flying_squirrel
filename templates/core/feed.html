@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block javascript %}
-<script src ={% static 'core/js/scripts.js' %} defer></script>
+<!-- <script src ={% static 'core/js/scripts.js' %} defer></script> -->
 {% endblock javascript%}
 {% block content %}
 
@@ -10,10 +10,10 @@
 </header>
 </br>
 </br>
-<form action={% url "snippet_search" %} method="GET">
+<form action="{% url 'snippet_search' %}" method="GET">
     <input type="text" name="query" />
     <button type="submit">Search snippets</button>
-  </form>
+</form>
 </br>
 </br>
 <div class="snippets-box">
