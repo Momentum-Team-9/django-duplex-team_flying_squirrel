@@ -11,6 +11,7 @@ django-environ = "*"
 django-registration-redux = "*"
 pillow = "*"
 standard = "*"
+django-highlightjs = "*"
 
 [dev-packages]
 

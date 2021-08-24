@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_extensions",
     "debug_toolbar",
-    'core'
+    'core', 
+    'highlightjs',
 ]
 
 MIDDLEWARE = [
