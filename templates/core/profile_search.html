@@ -21,12 +21,15 @@
 <form action="{% url 'profile_search' pk=user.pk %}" method="GET">
   <input type="text" name="query" />
   <button class="button" type="submit">Search snippets</button>
+  <div class="button">
+    <a href="{% url 'user_profile' pk=user.profile.pk %}">New Search</a>
+  </div>
 </form>
 <div class="snippets-box">
   <div>
     <h3><a href="{% url 'add_snippet' pk=user.pk %}">Add New Snippet</a></h3>
   </div>
-  {% for snippet in user.snippets.all reversed %}
+  {% for snippet in snippets reversed %}
   <div class="card">
       <div class="card-content">
         <div class="card-content">
