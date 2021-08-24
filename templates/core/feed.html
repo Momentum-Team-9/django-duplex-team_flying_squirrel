@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block javascript %}
-<!-- <script src ={% static 'core/js/scripts.js' %} defer></script> -->
+<script src="{% static 'core/js/scripts.js' %}" defer></script>
 {% endblock javascript%}
 {% block content %}
 
@@ -27,7 +27,7 @@
                 <p class="created_by">
                     <a href="{% url 'user_profile' pk=snippet.created_by.pk %}">{{snippet.created_by}}</a>
                 </p>
-
+                <div id="snippet">
                 <p class="title">
                     {{ snippet.title }}
                 </p>
@@ -37,12 +37,11 @@
                 <p class="language">
                     {{snippet.language}}
                 </p>
+                </div>
             </div>
             <footer class="card-footer">
                 <p class="card-footer-item">
-                <span>
-                    <a href="#">Copy Snippet</a>
-                </span>
+                    <button id="copy" class="button" data-clipboard-action="copy" data-clipboard-target="#snippet">Copy Snippet</button>
                 </p>
                 {% if request.user.pk == snippet.created_by.pk %}
                     <p class="card-footer-item">

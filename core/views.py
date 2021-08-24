@@ -120,3 +120,8 @@ def profile_search(request, pk):
         {'profile': profile, "snippets": search_results}
     )
 
+def copy_snippet(request, pk):
+    snippet = get_object_or_404(Snippet, pk=pk)
+    user = get_object_or_404(User, pk=pk)
+    #user 
+    pass
