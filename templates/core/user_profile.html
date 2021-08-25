@@ -1,5 +1,7 @@
 {% extends "base.html" %}
+{% block javascript %}
 
+{% endblock javascript%}
 {% block content %}
 
 {% if user.is_authenticated %}
@@ -45,20 +47,20 @@
           </p>
       </div>
       <footer class="card-footer">
-          <p class="card-footer-item">
-          <span>
-              <a href="#">Copy Snippet</a>
-          </span>
-          </p>
-          {% if request.user.pk == user.pk %}
-              <p class="card-footer-item">
-                  <span>
-                      <a href="{% url 'edit_snippet' pk=snippet.pk %}">Edit Snippet</a>
-                  </span>
-              </p>
-          {% endif %}
-          
-      </footer>
+        {% if request.user.pk != snippet.created_by.pk %}
+        <p class="card-footer-item">
+          <button id="{{snippet.pk}}" class="copy_button button btn" data-clipboard-action="copy" data-id="{{ snippet.pk }}">Copy Snippet</button>
+        </p>
+        {% endif %}
+        {% if request.user.pk == snippet.created_by.pk %}
+            <p class="card-footer-item">
+                <span>
+                    <a href="{% url 'edit_snippet' pk=snippet.pk %}">Edit Snippet</a>
+                </span>
+            </p>
+        {% endif %}
+        
+    </footer>
   </div>
   {% endfor %}
 

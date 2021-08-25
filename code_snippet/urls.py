@@ -32,5 +32,6 @@ urlpatterns = [
     path('user/<int:pk>/profile/snippet/edit', views.edit_snippet, name='edit_snippet'),
     path('search/', views.snippet_search, name='snippet_search'),
     path('user/<int:pk>/profile/search', views.profile_search, name='profile_search'),
+    path('snippet/<int:snippetPK>/copy', views.copy_snippet, name='copy_snippet'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

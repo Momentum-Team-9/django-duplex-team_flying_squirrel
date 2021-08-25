@@ -12,7 +12,8 @@ django-registration-redux = "*"
 pillow = "*"
 standard = "*"
 django-highlightjs = "*"
-
+clipboard = "*"
+x
 [dev-packages]
 
 [requires]

@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from .models import User, Profile, Snippet
 from .forms import SnippetForm, ProfileForm
 from django.db.models import Q
+import clipboard
 
 
 # Create your views here.
@@ -120,3 +121,16 @@ def profile_search(request, pk):
         {'profile': profile, "snippets": search_results}
     )
 
+def copy_snippet(request, snippetPK):
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        snippet = Snippet.objects.get(pk=snippetPK)
+        user = request.user.username
+        copied = Snippet.objects.create(created_by=request.user, title=snippet.title, code=snippet.code, language=snippet.language, copied=0)
+        
+        copied.save()
+        clipboard.copy(snippet.code)
+        data ={ 
+            "copied": "True"
+        }
+
+    return JsonResponse(data)
