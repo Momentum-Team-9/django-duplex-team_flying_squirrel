@@ -121,28 +121,16 @@ def profile_search(request, pk):
         {'profile': profile, "snippets": search_results}
     )
 
-def copy_snippet(request, pk):
-    snippet = get_object_or_404(Snippet, pk=pk)
-    user = request.user.username
-    # copied = Snippet.objects.create(created_by=request.user, title=snippet.title, code=snippet.code, language=snippet.language, copied=0)
-    if request.method == "POST":
-        form = SnippetForm(data=request.POST)
-        if form.is_valid():
-            snippet = form.save(commit=False)
-            snippet.created_by = request.user
-            form.save()
-            return redirect(to='feed')
+def copy_snippet(request, snippetPK):
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        snippet = Snippet.objects.get(pk=snippetPK)
+        user = request.user.username
+        copied = Snippet.objects.create(created_by=request.user, title=snippet.title, code=snippet.code, language=snippet.language, copied=0)
         
-    else:
-        form = SnippetForm()
+        copied.save()
+        clipboard.copy(snippet.code)
+        data ={ 
+            "copied": "True"
+        }
 
-    return render(request, "core/copy_snippet.html", {"form": form})
-
-
-
-    # copied.save()
-    
-    # clipboard.copy(snippet)
-
-    #user 
-    pass
+    return JsonResponse(data)
