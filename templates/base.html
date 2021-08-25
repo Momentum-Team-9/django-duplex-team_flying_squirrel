@@ -29,7 +29,10 @@
                 <a href="/feed">Feed</a>
             </div>
             <div class="navbar-item">
-                <a href="{% url 'user_profile' pk=request.user.pk %}">Profile</a>
+                <a href="{% url 'user_profile' pk=request.user.pk %}">Profile</a> 
+            </div>
+            <div class="navbar-item">
+                <a href="{% url 'users' %}">Users</a> 
             </div>
             <div class="navbar-item">
                 <a href="{% url 'add_snippet' pk=user.pk %}">Add Snippet</a>

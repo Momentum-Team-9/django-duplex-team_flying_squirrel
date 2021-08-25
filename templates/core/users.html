@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block javascript %}
+{% endblock javascript%}
+{% block content %}
+
+<header class="header">
+    <h1>All Registered Users</h1>
+</header>
+</br>
+</br>
+
+<div class="users">
+    <div>
+        {% for user in users reversed %}
+        <div class="card">
+            <div class="card-content">
+                <p class="username">
+                    <a href="{% url 'user_profile' pk=user.pk %}">{{user.username}}</a>
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
