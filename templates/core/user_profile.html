@@ -49,7 +49,7 @@
       <footer class="card-footer">
         {% if request.user.pk != snippet.created_by.pk %}
         <p class="card-footer-item">
-            <button id="{{ snippet.pk }}" class="copy_button button" data-clipboard-action="copy" data-clipboard-target="#snippet">Copy Snippet</button>
+          <button id="{{snippet.pk}}" class="copy_button button btn" data-clipboard-action="copy" data-id="{{ snippet.pk }}">Copy Snippet</button>
         </p>
         {% endif %}
         {% if request.user.pk == snippet.created_by.pk %}
