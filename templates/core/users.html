@@ -15,11 +15,6 @@
         {% for user in users reversed %}
         <div class="card">
             <div class="card-content">
-                {% for profile in profiles %}
-                {% if user.profile.pk is user.pk %}
-                <img src="{{ profile.profile_image.url }}" alt="Profile pic" width="100">
-                {% endif %}
-                {% endfor %}
                 <p class="username">
                     <a href="{% url 'user_profile' pk=user.pk %}">{{user.username}}</a>
                 </p>
