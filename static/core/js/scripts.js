@@ -1,14 +1,20 @@
 
+let copyButton = document.querySelector('.btn');
+let clip = new ClipboardJS('.btn');
+let copyBtns = document.querySelectorAll('.copy_button')
 
-var clipboard = new ClipboardJS('#event.target.id');
-    
-      clipboard.on('success', function (e) {
-        console.log(e.text);
+      clip.on('success', function (e) {
+        console.log(e);
       });
 
-      clipboard.on('error', function (e) {
-        console.log(error);
+      clip.on('error', function (e) {
+        console.log(e);
       });
+
+      copyBtns.forEach(btn=> btn.addEventListener('click',()=>{
+        console.log('click')
+        window.location.replace('http://127.0.0.1:8000/snippet/copy')
+      }))
 
 
 
@@ -18,17 +24,17 @@ var clipboard = new ClipboardJS('#event.target.id');
 
       console.log('HELLOOOO HI HEY')
 
-      const copybutton = document.querySelector('.copy_button')
-      copybutton.addEventListener('click', (event) => {
-        event.preventDefault()
-        const url = event.target.id 
-        console.log(url)
-        fetch(url, {
-          headers: { 'X-Requested-With': 'XMLHttpRequest' },
-        })
-          .then((res) => res.json())
-          .then((data) => {
+      // const copybutton = document.querySelector('.copy_button')
+      // copybutton.addEventListener('click', (event) => {
+      //   event.preventDefault()
+      //   const url = event.target.id 
+      //   console.log(url)
+      //   fetch(url, {
+      //     headers: { 'X-Requested-With': 'XMLHttpRequest' },
+      //   })
+      //     .then((res) => res.json())
+      //     .then((data) => {
             
-            console.log(data)
-          })
-      })
+      //       console.log(data)
+      //     })
+      // })

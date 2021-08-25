@@ -34,14 +34,14 @@
                 <pre><code>{{ snippet.code }}</code></pre>
                 </p>
                 <p class="language">
-                    {{snippet.language}}
+                    {{ snippet.language }}
                 </p>
                 </div>
             </div>
             <footer class="card-footer">
                 {% if request.user.pk != snippet.created_by.pk %}
                 <p class="card-footer-item">
-                    <button id="{{ snippet.pk }}" class="copy_button button" data-clipboard-action="copy" data-clipboard-target="#snippet" data-id="{{ snippet.pk }}">Copy Snippet</button>
+                    <a href="{% url 'copy_snippet' pk=snippet.pk %}"><button id="{{ snippet.pk }}" class="copy_button button btn" data-clipboard-action="copy" data-clipboard-text="{{ snippet.code }}" data-id="{{ snippet.pk }}">Copy Snippet</button></a>
                 </p>
                 {% endif %}
                 {% if request.user.pk == snippet.created_by.pk %}

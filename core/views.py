@@ -123,12 +123,26 @@ def profile_search(request, pk):
 
 def copy_snippet(request, pk):
     snippet = get_object_or_404(Snippet, pk=pk)
-    user = get_object_or_404(User, pk=pk)
-    copied = Snippet.objects.create(created_by=request.user, title=snippet.title, code=snippet.code, language=snippet.language, copied=0)
+    user = request.user.username
+    # copied = Snippet.objects.create(created_by=request.user, title=snippet.title, code=snippet.code, language=snippet.language, copied=0)
+    if request.method == "POST":
+        form = SnippetForm(data=request.POST)
+        if form.is_valid():
+            snippet = form.save(commit=False)
+            snippet.created_by = request.user
+            form.save()
+            return redirect(to='feed')
+        
+    else:
+        form = SnippetForm()
 
-    copied.save()
+    return render(request, "core/copy_snippet.html", {"form": form})
+
+
+
+    # copied.save()
     
-    clipboard.copy(snippet)
+    # clipboard.copy(snippet)
 
     #user 
     pass
