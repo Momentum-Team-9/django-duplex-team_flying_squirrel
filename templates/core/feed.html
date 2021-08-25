@@ -24,11 +24,11 @@
         <div class="card">
             <div class="card-content">
                 <p class="created_by">
-                    <a href="{% url 'user_profile' pk=snippet.created_by.pk %}">{{snippet.created_by}}</a>
+                    <a href="{% url 'user_profile' pk=snippet.created_by.pk %}">{{snippet.created_by|title}}</a>
                 </p>
                 <div id="snippet">
                 <p class="title">
-                    {{ snippet.title }}
+                    {{ snippet.title|title }}
                 </p>
                 <p class="">
                 <pre><code>{{ snippet.code }}</code></pre>
@@ -49,9 +49,7 @@
                         <span>
                             <a href="{% url 'edit_snippet' pk=snippet.pk %}">Edit Snippet</a>
                         </span>
-                    </p>
                 {% endif %}
-                
             </footer>
         </div>
         {% endfor %}

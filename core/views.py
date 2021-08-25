@@ -54,6 +54,14 @@ def edit_profile(request, pk):
         {'form': form}
     )
 
+
+@login_required
+def user(request):
+    users = User.objects.all()
+    
+    return render(request, 'core/users.html', {'users':users})
+
+
 @login_required
 def snippet(request, pk):
     users = User.objects.all()
@@ -98,12 +106,14 @@ def edit_snippet(request, pk):
         {'form': form, 'snippet': snippet}
     )
 
+
 @login_required
 def snippet_search(request):
     query = request.GET.get("query")
     search_results = Snippet.objects.filter(Q(title__icontains=query) | Q(code__icontains=query) | Q(language__icontains=query))
 
     return render(request, "core/feed.html", {"snippets": search_results})
+
 
 @login_required
 def profile_search(request, pk):

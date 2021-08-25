@@ -13,7 +13,7 @@ pillow = "*"
 standard = "*"
 django-highlightjs = "*"
 clipboard = "*"
-x
+
 [dev-packages]
 
 [requires]
