@@ -10,24 +10,31 @@
   </header>
 {% endif %}
 <div class="profile">
-  Bio: {{ profile.bio }}
+  
   <div class="profile-pic">
       <img src="{{ profile.profile_image.url }}" alt="Profile pic" width="200">
-      <br>
+  </div>
+  Bio: {{ profile.bio }}
+  <br>
+  <div>
       {% if request.user.pk == user.pk %}
       <a href="{% url 'edit_profile' pk=user.pk %}">Edit Profile</a>
       {% endif %}
   </div>
 </br></br>
 </div>
+{% if request.user.pk == profile.user.pk %}
 <form action="{% url 'profile_search' pk=user.pk %}" method="GET">
   <input type="text" name="query" />
   <button class="button" type="submit">Search snippets</button>
 </form>
+{% endif %}
 <div class="snippets-box">
+  {% if request.user.pk == profile.user.pk %}
   <div>
     <h3><a href="{% url 'add_snippet' pk=user.pk %}">Add New Snippet</a></h3>
   </div>
+  {% endif %}
   {% for snippet in user.snippets.all reversed %}
   <div class="card">
       <div class="card-content">
@@ -35,7 +42,6 @@
           <p class="created_by">
               {{snippet.created_by}}
           </p>
-
           <p class="title">
               {{ snippet.title }}
           </p>

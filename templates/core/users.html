@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block javascript %}
+{% endblock javascript%}
+{% block content %}
+
+<header class="header">
+    <h1>All Registered Users</h1>
+</header>
+</br>
+</br>
+
+<div class="users">
+    <div>
+        {% for user in users reversed %}
+        <div class="card">
+            <div class="card-content">
+                {% for profile in profiles %}
+                {% if user.profile.pk is user.pk %}
+                <img src="{{ profile.profile_image.url }}" alt="Profile pic" width="100">
+                {% endif %}
+                {% endfor %}
+                <p class="username">
+                    <a href="{% url 'user_profile' pk=user.pk %}">{{user.username}}</a>
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
