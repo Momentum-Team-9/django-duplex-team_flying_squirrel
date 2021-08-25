@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 {% block javascript %}
-<script src="{% static 'core/js/scripts.js' %}" defer></script>
 {% endblock javascript%}
 {% block content %}
 
@@ -40,9 +39,11 @@
                 </div>
             </div>
             <footer class="card-footer">
+                {% if request.user.pk != snippet.created_by.pk %}
                 <p class="card-footer-item">
-                    <button id="copy" class="button" data-clipboard-action="copy" data-clipboard-target="#snippet">Copy Snippet</button>
+                    <button id="{{ snippet.pk }}" class="copy_button button" data-clipboard-action="copy" data-clipboard-target="#snippet" data-id="{{ snippet.pk }}">Copy Snippet</button>
                 </p>
+                {% endif %}
                 {% if request.user.pk == snippet.created_by.pk %}
                     <p class="card-footer-item">
                         <span>

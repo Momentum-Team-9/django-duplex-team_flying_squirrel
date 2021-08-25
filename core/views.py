@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from .models import User, Profile, Snippet
 from .forms import SnippetForm, ProfileForm
 from django.db.models import Q
+import clipboard
 
 
 # Create your views here.
@@ -123,5 +124,11 @@ def profile_search(request, pk):
 def copy_snippet(request, pk):
     snippet = get_object_or_404(Snippet, pk=pk)
     user = get_object_or_404(User, pk=pk)
+    copied = Snippet.objects.create(created_by=request.user, title=snippet.title, code=snippet.code, language=snippet.language, copied=0)
+
+    copied.save()
+    
+    clipboard.copy(snippet)
+
     #user 
     pass
