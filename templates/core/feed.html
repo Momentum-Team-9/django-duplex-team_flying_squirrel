@@ -4,11 +4,9 @@
 {% endblock javascript%}
 {% block content %}
 
-<header class="header">
+<div class="header">
     <h1>Public Snippet Feed</h1>
-</header>
-</br>
-</br>
+</div>
 <form action="{% url 'snippet_search' %}" method="GET">
     <input type="text" name="query" />
     <button type="submit">Search snippets</button>
@@ -16,9 +14,6 @@
 </br>
 </br>
 <div class="snippets-box">
-    <div>
-        <h3><a href="{% url 'add_snippet' pk=user.pk %}">Add New Snippet</a></h3>
-    </div>
     <div>
         {% for snippet in snippets reversed %}
         <div class="card">

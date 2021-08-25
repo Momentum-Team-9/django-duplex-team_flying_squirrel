@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/styles/base16/solarized-light.min.css">
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/highlight.min.js"></script><script src="" defer></script>
     <script>hljs.highlightAll();</script>
     <script src="{% static '/core/js/clipboard.js' %}"></script>
     <script src ="{% static '/core/js/scripts.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static '/core/css/styles.css' %}">
     {% block javascript %}{% endblock javascript%}
-    <title>Flying Squirrel Code Snippets</title>
+    <title>Errant X Code Snippets</title>
 </head>
 <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav id="base-nav" class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="{% url 'index' %}">
-                <p>Code Keeper</p>
+                <p>Errant X</p>
             </a>
         </div>
         {% if request.user.pk != none %}
@@ -31,28 +31,34 @@
             <div class="navbar-item">
                 <a href="{% url 'user_profile' pk=request.user.pk %}">Profile</a>
             </div>
-            
+            <div class="navbar-item">
+                <a href="{% url 'add_snippet' pk=user.pk %}">Add Snippet</a>
+            </div>
         </div>
         {% endif %}
         <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="buttons">
-                    {% if request.user.pk != none %}
-                    Welcome, {{user.username|title}}<a class="button is-light" href="/accounts/logout">
-                    Log out 
-                    </a>
-                    {% endif %}
-                    {% if request.user.pk == none %}
+            <div class="buttons">
+                {% if request.user.pk != none %}
+                    <div class="navbar-item">
+                        <p>Welcome, {{user.username|title}}!</p>
+                    </div>
+                    <div>
+                        <a class="button is-light" href="/accounts/logout">
+                        Log out 
+                        </a>
+                    </div>
+                {% endif %}
+                {% if request.user.pk == none %}        
                     <a class="button is-dark" href="/accounts/register">
                         <strong>Sign up</strong>
                     </a>
                     <a class="button is-light" href="/accounts/login">
                         Log in
                     </a>
-                    {% endif %}
-                </div>
+                {% endif %}
             </div>
         </div>
+    
     </nav>
     <div class="content">
         {% block content %}

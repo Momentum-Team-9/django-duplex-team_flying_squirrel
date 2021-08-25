@@ -26,9 +26,6 @@
   </div>
 </form>
 <div class="snippets-box">
-  <div>
-    <h3><a href="{% url 'add_snippet' pk=user.pk %}">Add New Snippet</a></h3>
-  </div>
   {% for snippet in snippets reversed %}
   <div class="card">
       <div class="card-content">
