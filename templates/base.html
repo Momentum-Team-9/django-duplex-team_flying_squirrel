@@ -22,46 +22,52 @@
             <a class="navbar-item" href="{% url 'index' %}">
                 <p>Errant X</p>
             </a>
+            <a role="button" class="navbar-burger" id="burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
         </div>
-        {% if request.user.pk != none %}
-        <div class="navbar-start">
-            <div class="navbar-item">
-                <a href="/feed">Feed</a>
+        <div class="navbar-menu" id="nav-links">
+            {% if request.user.pk != none %}
+            <div class="navbar-start">
+                <div class="navbar-item">
+                    <a href="/feed">Feed</a>
+                </div>
+                <div class="navbar-item">
+                    <a href="{% url 'user_profile' pk=request.user.pk %}">Profile</a> 
+                </div>
+                <div class="navbar-item">
+                    <a href="{% url 'users' %}">Users</a> 
+                </div>
+                <div class="navbar-item">
+                    <a href="{% url 'add_snippet' pk=user.pk %}">Add Snippet</a>
+                </div>
             </div>
-            <div class="navbar-item">
-                <a href="{% url 'user_profile' pk=request.user.pk %}">Profile</a> 
-            </div>
-            <div class="navbar-item">
-                <a href="{% url 'users' %}">Users</a> 
-            </div>
-            <div class="navbar-item">
-                <a href="{% url 'add_snippet' pk=user.pk %}">Add Snippet</a>
-            </div>
-        </div>
-        {% endif %}
-        <div class="navbar-end">
-            <div class="buttons">
-                {% if request.user.pk != none %}
-                    <div class="navbar-item">
-                        <p>Welcome, {{user.username|title}}!</p>
-                    </div>
-                    <div>
-                        <a class="button is-light" href="/accounts/logout">
-                        Log out 
+            {% endif %}
+            <div class="navbar-end">
+                <div class="buttons">
+                    {% if request.user.pk != none %}
+                        <div class="navbar-item">
+                            <p>Welcome, {{user.username|title}}!</p>
+                        </div>
+                        <div>
+                            <a class="button is-light" href="/accounts/logout">
+                            Log out 
+                            </a>
+                        </div>
+                    {% endif %}
+                    {% if request.user.pk == none %}        
+                        <a class="button is-dark" href="/accounts/register">
+                            <strong>Sign up</strong>
                         </a>
-                    </div>
-                {% endif %}
-                {% if request.user.pk == none %}        
-                    <a class="button is-dark" href="/accounts/register">
-                        <strong>Sign up</strong>
-                    </a>
-                    <a class="button is-light" href="/accounts/login">
-                        Log in
-                    </a>
-                {% endif %}
+                        <a class="button is-light" href="/accounts/login">
+                            Log in
+                        </a>
+                    {% endif %}
+                </div>
             </div>
         </div>
-    
     </nav>
     <div class="content">
         {% block content %}

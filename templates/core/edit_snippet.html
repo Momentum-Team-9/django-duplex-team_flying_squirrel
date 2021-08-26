@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load bulma_tags %}
 
 {% block content %}
 <h1>Edit {{ snippet.title }}</h1>
@@ -6,15 +7,13 @@
 <div class="form">
     <form method="POST" class="form-element">
         {% csrf_token %}
-        {% for field in form %}
-        <div class="">
-            <label for="{{field.id_for_label}}" class="">{{ field.label }}{{ field }}</label>
-        </div>
-        {% endfor %}
+        {{ form|bulma }}
+        
         <div>
             <button class="button is-warning" type="submit">Save Edit</button>
         </div>
     </form>
+</div>
 
 
 {% endblock %}
