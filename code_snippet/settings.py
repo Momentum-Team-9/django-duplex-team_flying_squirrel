@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'core', 
     'highlightjs',
     'clipboard',
+    'bulma',
 ]
 
 MIDDLEWARE = [

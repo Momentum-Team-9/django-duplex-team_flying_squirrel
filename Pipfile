@@ -13,6 +13,7 @@ pillow = "*"
 standard = "*"
 django-highlightjs = "*"
 clipboard = "*"
+django-bulma = "*"
 
 [dev-packages]
 
