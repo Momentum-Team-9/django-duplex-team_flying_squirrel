@@ -88,3 +88,7 @@ a.button.is-light {
 .navbar-menu.is-active {
     background-color: #6E4067;
 }
+
+.button.is-success {
+    background-color: #ff570a;
+}
