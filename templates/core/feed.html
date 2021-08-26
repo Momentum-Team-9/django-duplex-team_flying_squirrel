@@ -37,21 +37,17 @@
                     <a href="{% url 'user_profile' pk=snippet.created_by.pk %}">Created by: {{snippet.created_by|title}}</a>
                 </p>
                 {% if request.user.pk != snippet.created_by.pk %}
-                <p class="card-footer-item">
+                <span class="card-footer-item">
                     <button id="{{snippet.pk}}" class="copy_button button btn" data-clipboard-action="copy" data-id="{{ snippet.pk }}">Copy Snippet</button>
-                </p>
+                </span>
                 {% endif %}
                 {% if request.user.pk == snippet.created_by.pk %}
-                    <p class="card-footer-item">
-                        <span class="button">
-                            <a href="{% url 'edit_snippet' pk=snippet.pk %}">Edit Snippet</a>
-                        </span>
-                    </p>
-                    <p class="card-footer-item">
-                        <span class="button">
-                            <a href="{% url 'delete_snippet' pk=snippet.pk %}">Delete Snippet</a>
-                        </span>
-                    </p>
+                    <span class="card-footer-item button">
+                        <a href="{% url 'edit_snippet' pk=snippet.pk %}">Edit Snippet</a>
+                    </span>
+                    <span class="card-footer-item button">
+                        <a href="{% url 'delete_snippet' pk=snippet.pk %}">Delete Snippet</a>
+                    </span>
                 {% endif %}
             </footer>
         </div>

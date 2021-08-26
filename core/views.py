@@ -133,7 +133,7 @@ def profile_search(request, pk):
 
     query = request.GET.get("query")
     filtered_results = Snippet.objects.filter(created_by_id=request.user.pk)
-    search_results = filtered_results.filter(title__icontains=query)
+    search_results = filtered_results.filter(Q(title__icontains=query) | Q(code__icontains=query) | Q(language__icontains=query))
 
     return render(
         request,

@@ -1,67 +1,77 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-{% if user.is_authenticated %}
-  <header class="header">
+<div class="profile-header">
+  <div class="bio">
+  {% if user.is_authenticated %}
     <h1>{{user.username|title}}'s Profile</h1>
-  </header>
-{% endif %}
-<div class="profile">
-  Bio: {{ profile.bio }}
-  <div class="profile-pic">
+  {% endif %}
+    <text>{{ profile.bio }}</text> 
+    <div class="edit-profile">
+        {% if request.user.pk == user.pk %}
+        <a href="{% url 'edit_profile' pk=user.pk %}"><button class="button is-small">Edit Profile</button></a>
+        {% endif %}
+    </div>
+  </div>
+  <div>
+    <div class="profile-pic">
       <img src="{{ profile.profile_image.url }}" alt="Profile pic" width="200">
-      <br>
-      {% if request.user.pk == user.pk %}
-      <a href="{% url 'edit_profile' pk=user.pk %}">Edit Profile</a>
-      {% endif %}
+    </div>
   </div>
-</br></br>
 </div>
-<form action="{% url 'profile_search' pk=user.pk %}" method="GET">
-  <input type="text" name="query" />
-  <button class="button" type="submit">Search snippets</button>
-  <div class="button">
-    <a href="{% url 'user_profile' pk=user.profile.pk %}">New Search</a>
-  </div>
-</form>
+<div class="profile-search">
+  {% if request.user.pk == profile.user.pk %}
+  <form class="field has-addons" action="{% url 'profile_search' pk=user.pk %}" method="GET">
+    <div class="control is-expanded">
+        <input class="input" type="text" name="query">
+    </div>
+    <div class="control">
+        <button class="button" type="submit">Search snippets</button>
+    </div>
+  </form>
+  {% endif %}
+</div>
+
 <div class="snippets-box">
   {% for snippet in snippets reversed %}
-  <div class="card">
-      <div class="card-content">
-        <div class="card-content">
-          <p class="created_by">
-              {{snippet.created_by}}
-          </p>
-
-          <p class="title">
-              {{ snippet.title }}
-          </p>
-          <p class="">
-            <pre><code>{{ snippet.code }}</code></pre>
-          </p>
-          <p class="language">
-              {{snippet.language}}
-          </p>
-      </div>
-      <footer class="card-footer">
-          <p class="card-footer-item">
-          <span>
-              <a href="#">Copy Snippet</a>
-          </span>
-          </p>
-          {% if request.user.pk == user.pk %}
-              <p class="card-footer-item">
-                  <span>
-                      <a href="{% url 'edit_snippet' pk=snippet.pk %}">Edit Snippet</a>
-                  </span>
+      <div class="card snippets-card">
+          <div class="card-content">
+              <div id="snippet">
+                  <p class="title">
+                      {{ snippet.title|title }}
+                  </p>
+                  <p class="subtitle language">
+                      {{ snippet.language }}
+                  </p>
+              </div>
+                  <p class="">
+                      <pre><code>{{ snippet.code }}</code></pre>
+                  </p>
+          <footer class="card-footer">
+              <p class="card-footer-item created-by">
+                  <a href="{% url 'user_profile' pk=snippet.created_by.pk %}">Created by: {{snippet.created_by|title}}</a>
               </p>
-          {% endif %}
-          
-      </footer>
+              {% if request.user.pk != snippet.created_by.pk %}
+              <p class="card-footer-item">
+                  <button id="{{snippet.pk}}" class="copy_button button btn" data-clipboard-action="copy" data-id="{{ snippet.pk }}">Copy Snippet</button>
+              </p>
+              {% endif %}
+              {% if request.user.pk == snippet.created_by.pk %}
+                  <p class="card-footer-item">
+                      <span class="button">
+                          <a href="{% url 'edit_snippet' pk=snippet.pk %}">Edit Snippet</a>
+                      </span>
+                  </p>
+                  <p class="card-footer-item">
+                      <span class="button">
+                          <a href="{% url 'delete_snippet' pk=snippet.pk %}">Delete Snippet</a>
+                      </span>
+                  </p>
+              {% endif %}
+          </footer>
+      </div>
+      {% endfor %}
   </div>
-  {% endfor %}
-
 </div>
 
 {% endblock %}
