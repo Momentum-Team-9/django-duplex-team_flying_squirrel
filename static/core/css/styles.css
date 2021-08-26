@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(100, 13, 20, .6);
+    
 }
 
 
@@ -28,4 +28,28 @@ body {
 .form {
     margin: 20px;
     padding: 3em;
+}
+
+.profile-header {
+    display: flex;
+    margin: 2em;
+    flex-grow: 1;
+    padding: 2em;
+
+}
+
+.bio {
+    flex-grow: 3;
+}
+
+.profile-pic {
+    align-self: flex-end;
+}
+
+.edit-profile {
+    align-self: flex-end;
+}
+
+.profile-search {
+    margin: 2em;
 }
