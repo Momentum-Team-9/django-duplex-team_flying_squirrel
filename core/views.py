@@ -145,9 +145,11 @@ def copy_snippet(request, snippetPK):
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         snippet = Snippet.objects.get(pk=snippetPK)
         user = request.user.username
-        copied = Snippet.objects.create(created_by=request.user, title=snippet.title, code=snippet.code, language=snippet.language, copied=0)
+        snippet.copy_count +=1
+        copied = Snippet.objects.create(created_by=request.user, title=snippet.title, code=snippet.code, language=snippet.language, copy_count=0)
         
         copied.save()
+        snippet.save()
         clipboard.copy(snippet.code)
         data ={ 
             "copied": "True"

@@ -39,7 +39,7 @@ class Snippet(models.Model):
     code = models.TextField()
     language = models.CharField(max_length=30)
     created_at = DateTimeField(auto_now_add=True)
-    copied = models.IntegerField(default=0)
+    copy_count = models.IntegerField(default=0)
     public = models.BooleanField(default=True)
 
     def __str__(self):
