@@ -92,3 +92,7 @@ a.button.is-light {
 .button.is-success {
     background-color: #ff570a;
 }
+
+.content {
+    margin-top: 100px;
+}
