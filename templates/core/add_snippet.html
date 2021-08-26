@@ -7,15 +7,13 @@
 <div class="form">
     <form method="POST" class="form-element">
         {% csrf_token %}
-        {% for field in form %}
-        <div class="">
-            <label for="{{field.id_for_label}}" class="">{{ field.label }}{{ field }}</label>
-        </div>
-        {% endfor %}
+        {{ form|bulma }}
+        
         <div>
             <button class="button is-success" type="submit">Add Snippet</button>
         </div>
     </form>
+</div>
 
 
 {% endblock %}

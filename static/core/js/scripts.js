@@ -17,3 +17,14 @@ copyBtns.forEach(btn=> btn.addEventListener('click',e=>{
           console.log(data)
           
     })}))
+
+
+
+// Script to toggle mobile nav view
+
+const burgerIcon = document.getElementById('burger')
+const navbarMenu = document.getElementById('nav-links')
+
+burgerIcon.addEventListener('click', () => {
+  navbarMenu.classList.toggle('is-active')
+})
