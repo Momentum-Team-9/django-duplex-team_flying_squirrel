@@ -65,9 +65,9 @@ def user(request):
 @login_required
 def snippet(request, pk):
     users = User.objects.all()
-    snippet = Snippet.objects.all()
+    snippet = get_object_or_404(Snippet, pk=pk)
 
-    return
+    return render(request, "core/snippet.html", {"snippet": snippet})
 
 
 @login_required
@@ -105,6 +105,16 @@ def edit_snippet(request, pk):
         'core/edit_snippet.html',
         {'form': form, 'snippet': snippet}
     )
+
+
+@login_required
+def delete_snippet(request, pk):
+    snippet = get_object_or_404(Snippet, pk=pk)
+    if request.method == 'POST':
+        snippet.delete()
+        return redirect(to='feed')
+
+    return render(request, "core/delete_snippet.html", {'snippet': snippet})
 
 
 @login_required
