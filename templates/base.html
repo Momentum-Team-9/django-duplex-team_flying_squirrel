@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="has-navbar-fixed-top">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,10 +17,10 @@
     <title>Errant X Code Snippets</title>
 </head>
 <body>
-    <nav id="base-nav" class="navbar" role="navigation" aria-label="main navigation">
+    <nav id="base-nav" class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="{% url 'index' %}">
-                <p>Errant X</p>
+                <img src="/media/media/errant-x-logo.png" alt="Errant X">
             </a>
             <a role="button" class="navbar-burger" id="burger" aria-label="menu" aria-expanded="false">
                 <span aria-hidden="true"></span>

@@ -1,6 +1,6 @@
 .navbar {
     padding: 0.4em;
-    background-color: rgba(66, 0, 57, .8);
+    background-color: #6E4067;
     color: #ffffff; 
 } 
 
@@ -38,7 +38,6 @@ a.button.is-light {
 }
 
 .snippets-box{
-    display: flex;
     margin: 2em;
     
 }
@@ -74,4 +73,18 @@ a.button.is-light {
 
 .profile-search {
     margin: 2em;
+}
+
+.button.search-button {
+    background-color: #ff570a;
+    color: #ffffff
+}
+
+.card.snippets-card {
+    border-width: 1px;
+    border-color: #ff570a;
+}
+
+.navbar-menu.is-active {
+    background-color: #6E4067;
 }
