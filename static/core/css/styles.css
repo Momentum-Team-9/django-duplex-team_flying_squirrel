@@ -1,14 +1,36 @@
-body {
-    
-}
-
-
 .navbar {
     padding: 0.4em;
+    background-color: #6E4067;
+    color: #ffffff; 
 } 
+
+.navbar a {
+    color: #ffffff;
+}
+
+.navbar a:hover {
+    color: #4C62C8;
+}
+
+.navbar p {
+    color: #ffffff;
+}
 
 .navbar-item {
     margin: 0.3em;
+    font-size: 1.1em;
+}
+
+a.button.is-dark {
+    background-color: #ff570a;
+}
+
+a.button.is-light {
+    color: #4C62C8
+}
+
+.header h1 {
+    color: #4C62C8;
 }
 
 .header {
@@ -16,7 +38,6 @@ body {
 }
 
 .snippets-box{
-    display: flex;
     margin: 2em;
     
 }
@@ -52,4 +73,26 @@ body {
 
 .profile-search {
     margin: 2em;
+}
+
+.button.search-button {
+    background-color: #ff570a;
+    color: #ffffff
+}
+
+.card.snippets-card {
+    border-width: 1px;
+    border-color: #ff570a;
+}
+
+.navbar-menu.is-active {
+    background-color: #6E4067;
+}
+
+.button.is-success {
+    background-color: #ff570a;
+}
+
+.content {
+    margin-top: 100px;
 }

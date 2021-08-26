@@ -11,7 +11,7 @@
             <input class="input" type="text" name="query">
         </div>
         <div class="control">
-            <button class="button" type="submit">Search snippets</button>
+            <button class="button search-button" type="submit">Search snippets</button>
         </div>
     </form>
 </div>
@@ -35,6 +35,7 @@
                     <p class="copy_count count">
                         Copied: {{ snippet.copy_count }} Times
                     </p>
+                </div>
             <footer class="card-footer">
                 <p class="card-footer-item created-by">
                     <a href="{% url 'user_profile' pk=snippet.created_by.pk %}">Created by: {{snippet.created_by|title}}</a>
@@ -53,8 +54,7 @@
                     </span>
                 {% endif %}
             </footer>
-        </div>
-        {% endfor %}
     </div>
+    {% endfor %}
 </div>
 {% endblock %}

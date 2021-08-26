@@ -16,11 +16,11 @@
     {% block javascript %}{% endblock javascript%}
     <title>Errant X Code Snippets</title>
 </head>
-<body>
-    <nav id="base-nav" class="navbar" role="navigation" aria-label="main navigation">
+<body class="has-navbar-fixed-top">
+    <nav id="base-nav" class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="{% url 'index' %}">
-                <p>Errant X</p>
+                <img src="/media/media/errant-x-logo.png" alt="Errant X">
             </a>
             <a role="button" class="navbar-burger" id="burger" aria-label="menu" aria-expanded="false">
                 <span aria-hidden="true"></span>
