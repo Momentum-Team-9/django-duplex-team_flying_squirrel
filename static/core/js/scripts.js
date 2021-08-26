@@ -1,13 +1,18 @@
 
-const copyBtns = [...document.getElementsByClassName('copy_button')]
-console.log(copyBtns)
-
 let previous = null
 
+const copyBtns = [...document.getElementsByClassName('copy_button')]
+console.log(copyBtns)
 copyBtns.forEach(btn=> btn.addEventListener('click',e=>{
-    const snippetBox = e.target.parentElement.parentElement;
-    const snippet = btn.getAttribute('data-id')
+
     const copyURL =`/snippet/${e.target.id}/copy`
+    btn.textContent = 'Copied to Profile'
+
+    if (previous){
+        previous.textContent = 'Copy Snippet'
+    }
+    previous = btn
+
     fetch(copyURL, {
       headers: { 'X-Requested-With': 'XMLHttpRequest' },
         })

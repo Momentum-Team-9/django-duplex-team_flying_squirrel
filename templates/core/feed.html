@@ -32,6 +32,9 @@
                     <p class="">
                         <pre><code>{{ snippet.code }}</code></pre>
                     </p>
+                    <p class="copy_count count">
+                        Copied: {{ snippet.copy_count }} Times
+                    </p>
             <footer class="card-footer">
                 <p class="card-footer-item created-by">
                     <a href="{% url 'user_profile' pk=snippet.created_by.pk %}">Created by: {{snippet.created_by|title}}</a>
