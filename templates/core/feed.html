@@ -46,6 +46,12 @@
                         <span class="button">
                             <a href="{% url 'edit_snippet' pk=snippet.pk %}">Edit Snippet</a>
                         </span>
+                    </p>
+                    <p class="card-footer-item">
+                        <span class="button">
+                            <a href="{% url 'delete_snippet' pk=snippet.pk %}">Delete Snippet</a>
+                        </span>
+                    </p>
                 {% endif %}
             </footer>
         </div>
