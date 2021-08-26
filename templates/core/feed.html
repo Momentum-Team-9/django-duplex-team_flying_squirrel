@@ -6,34 +6,36 @@
 
 <div class="header">
     <h1>Public Snippet Feed</h1>
+    <form class="field has-addons" action="{% url 'snippet_search' %}" method="GET">
+        <div class="control is-expanded">
+            <input class="input" type="text" name="query">
+        </div>
+        <div class="control">
+            <button class="button" type="submit">Search snippets</button>
+        </div>
+    </form>
 </div>
-<form action="{% url 'snippet_search' %}" method="GET">
-    <input type="text" name="query" />
-    <button type="submit">Search snippets</button>
-</form>
-</br>
-</br>
+
+
 <div class="snippets-box">
-    <div>
-        {% for snippet in snippets reversed %}
-        <div class="card">
+    {% for snippet in snippets reversed %}
+        <div class="card snippets-card">
             <div class="card-content">
-                <p class="created_by">
-                    <a href="{% url 'user_profile' pk=snippet.created_by.pk %}">{{snippet.created_by|title}}</a>
-                </p>
                 <div id="snippet">
-                <p class="title">
-                    {{ snippet.title|title }}
-                </p>
-                <p class="">
-                <pre><code>{{ snippet.code }}</code></pre>
-                </p>
-                <p class="language">
-                    {{ snippet.language }}
-                </p>
+                    <p class="title">
+                        {{ snippet.title|title }}
+                    </p>
+                    <p class="subtitle language">
+                        {{ snippet.language }}
+                    </p>
                 </div>
-            </div>
+                    <p class="">
+                        <pre><code>{{ snippet.code }}</code></pre>
+                    </p>
             <footer class="card-footer">
+                <p class="card-footer-item created-by">
+                    <a href="{% url 'user_profile' pk=snippet.created_by.pk %}">Created by: {{snippet.created_by|title}}</a>
+                </p>
                 {% if request.user.pk != snippet.created_by.pk %}
                 <p class="card-footer-item">
                     <button id="{{snippet.pk}}" class="copy_button button btn" data-clipboard-action="copy" data-id="{{ snippet.pk }}">Copy Snippet</button>
@@ -41,7 +43,7 @@
                 {% endif %}
                 {% if request.user.pk == snippet.created_by.pk %}
                     <p class="card-footer-item">
-                        <span>
+                        <span class="button">
                             <a href="{% url 'edit_snippet' pk=snippet.pk %}">Edit Snippet</a>
                         </span>
                 {% endif %}
