@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+
 {% block content %}
 <h1>Delete Snippet</h1>
 
@@ -8,7 +9,7 @@
     {% csrf_token %}
     <p>Are you sure you want to delete {{ snippet.title }}?</p>
     <div>
-      <button type="submit">Delete Snippet</button><br />
+      <button class="button" type="submit">Delete Snippet</button><br />
       <a href="{% url 'feed' %}">Cancel</a>
     </div>
   </form>
